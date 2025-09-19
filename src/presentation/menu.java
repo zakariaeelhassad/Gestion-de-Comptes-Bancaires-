@@ -51,7 +51,9 @@ public class menu {
     				break;
 	        case 8 : afficherDetailCompte();
 	        		break ;
-	        default : System.out.println("°-° Entrée invalide -_- Veuillez saisir un nombre °-°");
+			case 0 : System.out.println("Merci d'avoir utilisé l'application. À bientôt ^_^");
+            		break;
+	        default : System.out.println("Entrée invalide -_- Veuillez saisir un nombre °-°");
 	        		break;
 	        }
 		} while (choix != 0);

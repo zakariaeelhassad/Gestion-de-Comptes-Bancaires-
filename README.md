@@ -193,7 +193,7 @@ Chaque saisie utilisateur est validée (format du code, montant > 0, compte exis
 ## 📷 Diagramme de classes
 
 
-![Diagramme de classes](assets/diagramme-class.png)
+![Diagramme de classes](assets/diagramme_class.png)
 
 
 ---
