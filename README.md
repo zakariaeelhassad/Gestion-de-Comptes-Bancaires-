@@ -99,14 +99,15 @@ java -jar GestionComptes.jar
 
 Le menu principal propose des options claires, par exemple :
 
-1. Créer un compte
-2. Lister les comptes
-3. Consulter le solde d'un compte
-4. Effectuer un versement
-5. Effectuer un retrait
-6. Effectuer un virement
-7. Consulter les opérations d'un compte
-8. Quitter
+1. Créer Compte Courant
+2. Créer Compte Epargne
+3. Verser
+4. Retirer
+5. Virement
+6. Consulter solde
+7. Consulter opérations
+8. Afficher détails compte
+0. Quitter
 
 Chaque saisie utilisateur est validée (format du code, montant > 0, compte existant, règles de retrait selon le type de compte).
 
