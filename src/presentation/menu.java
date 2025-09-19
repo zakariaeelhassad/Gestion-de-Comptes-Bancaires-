@@ -37,6 +37,16 @@ public class menu {
 	        		break ;
 	        case 3 : virsement();
 	        		break ;	
+	        case 4 : retrait();
+	        		break;
+	        case 5 : virement();
+	        		break;
+	        case 6: consulterSolde();
+	        		break;
+	        case 7 : consulterOperations();
+    				break;
+	        case 8 : afficherDetailCompte();
+	        		break ;
 	        default : System.out.println("jnlezf");
 	        		break;
 	        }
@@ -81,5 +91,86 @@ public class menu {
         }
 
 	}
+	
+	private void retrait() {
+		System.out.print("entre le code :");
+		String code = sc.nextLine();
+		
+		Compte compte = compteService.chercherCompte(code);
+		if(compte != null) {
+			System.out.print("entre le montant :");
+			double montant = sc.nextDouble();
+			if(compte.retirer(montant)) {
+				System.out.println("Retreier effectué !");
+			}else {
+				System.out.println("Retrait imposible !");
+			}
+		}else {
+			System.out.println("Compte introuvable !");
+		}
+	}
+	
+	private void virement() {
+		System.out.print("entre code source : ");
+		String codeS = sc.nextLine();
+		
+		System.out.print("entre code destination : ");
+		String codeD = sc.nextLine();
+		
+		Compte compteS = compteService.chercherCompte(codeS);
+		Compte compteD = compteService.chercherCompte(codeD);
+		
+		if(compteS != null && compteD != null) {
+			System.out.print("entre le montant");
+			double montant = sc.nextDouble();
+			if(compteS.virement(compteD , montant)) {
+				System.out.println("virement reussi ");
+			}else {
+				System.out.println("virement échoué  ");
+			}
+		}else {
+			System.out.println("Compte introuvable !");
+		}
+	}
+	
+	private void afficherDetailCompte() {
+		System.out.print("Entre le code ");
+		String code = sc.nextLine();
+		
+		Compte compte = compteService.chercherCompte(code);
+		if(compte != null) {
+			compte.afficherDetails();
+		}else {
+			System.out.println("Compte introuvable");
+		}
+	}
+	
+	private void consulterOperations() {
+		System.out.print("entre code :");
+		String code = sc.nextLine();
+		
+		Compte compte = compteService.chercherCompte(code);
+		if(compte != null) {
+			System.out.println("opiration de compte" + compte.getCode() + ":");
+			for(Operation opiration : compte.getListeOpiration()) {
+				System.out.println(opiration);
+			}
+		}else {
+			System.out.println("Compte introuvable");
+		}
+	}
+	
+	private void consulterSolde() {
+		System.out.print("entre code :");
+		String code = sc.nextLine();
+		
+		Compte compte = compteService.chercherCompte(code);
+		if(compte != null) {
+			System.out.println("Solde du compte " + compte.getCode() + " : " + compte.getSolde());
+        } else {
+            System.out.println("Compte introuvable !");
+        }
+	}
+	
 
 }
