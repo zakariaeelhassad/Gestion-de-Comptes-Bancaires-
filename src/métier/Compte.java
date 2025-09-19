@@ -5,7 +5,7 @@ import java.util.List;
 
 public abstract class Compte {
 
-	private String code;
+	protected String code;
     protected double solde;
     protected List<Operation> listeOperations;
     
@@ -38,9 +38,9 @@ public abstract class Compte {
     	listeOperations.add(new Versement(montant , "dépot"));
     }
     
-    public void virement(Compte destnataire , double montant) {
+    public boolean virement(Compte destnataire , double montant) {
     	if(this.retirer(montant)) {
-    		destinataire.verser(montant);
+    		destnataire.verser(montant);
             return true;
         }
         return false;
