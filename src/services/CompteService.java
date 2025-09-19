@@ -25,7 +25,7 @@ public class CompteService {
     public void ajouterCompte(Compte compte) {
         if (ValidationUtils.validerCode(compte.getCode())) {
             comptes.put(compte.getCode(), compte);
-            System.out.println("Compte ajouté avec succès: " + compte.getCode());
+            System.out.println("`````` Compte ajouté avec succès: " + compte.getCode() + " ``````");
         } else {
             System.out.println("Code invalide !");
         }
