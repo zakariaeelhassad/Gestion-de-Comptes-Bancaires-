@@ -2,6 +2,7 @@ package presentation;
 
 import métier.*;
 import services.CompteService;
+import utilitaires.ValidationChoix;
 import java.util.Scanner;
 
 public class menu {
@@ -15,8 +16,11 @@ public class menu {
 	
 	public void afficherMenu() {
 		int choix ;
+		ValidationChoix validator = new ValidationChoix();
+		
+		
 		do {
-			System.out.println("\n---------------- MENU BANQUE ----------------");
+			System.out.println("\n---------------- ^_^ MENU BANQUE ^_^ ----------------");
 	        System.out.println("1. Créer Compte Courant");
 	        System.out.println("2. Créer Compte Epargne");
 	        System.out.println("3. Verser");
@@ -27,8 +31,8 @@ public class menu {
 	        System.out.println("8. Afficher détails compte");
 	        System.out.println("0. Quitter");
 	        System.out.print("Choix: ");
-	        choix = sc.nextInt();
-	        sc.nextLine(); 
+	        choix = validator.validationChoix();
+	        
 	        
 	        switch(choix) {
 	        case 1 : creerCompteCourant();
@@ -47,7 +51,7 @@ public class menu {
     				break;
 	        case 8 : afficherDetailCompte();
 	        		break ;
-	        default : System.out.println("jnlezf");
+	        default : System.out.println("°-° Entrée invalide -_- Veuillez saisir un nombre °-°");
 	        		break;
 	        }
 		} while (choix != 0);
@@ -56,80 +60,80 @@ public class menu {
 	
 	private void creerCompteCourant() {
 		String code = compteService.genererCodeCompte();
-    	System.out.print("Entre le solde :");
+    	System.out.print("Entre le solde ^_^:");
     	double solde = sc.nextDouble();
-    	System.out.print("Découvert autorisé: ");
+    	System.out.print("Découvert autorisé ^_^ :");
     	double decouvert = sc.nextDouble();
     	sc.nextLine();
     	compteService.ajouterCompte(new CompteCourant(code , solde , decouvert));
-    	System.out.println("compte courant créé ");
+    	System.out.println("<<<< ^_^ compte courant créé ^_^ >>>");
     }
 	
 	private void creerCompteEpargne() {
 		String code = compteService.genererCodeCompte();
-		System.out.print("Entre le solde :");
+		System.out.print("Entre le solde ^_^:");
     	double solde = sc.nextDouble();
-    	System.out.print("Entre toux interet :");
+    	System.out.print("Entre toux interet ^_^:");
     	double toux = sc.nextDouble();
     	sc.nextLine();
     	compteService.ajouterCompte(new CompteEpargne(code , solde , toux));
-    	System.out.println("compte Epargne créé ");
+    	System.out.println("<<<< ^_^ compte courant créé ^_^ >>>");
 	}
 	
 	private void virsement() {
-		System.out.print("Entre le code :");
+		System.out.print("Entre le code ^_^:");
 		String code = sc.nextLine();
 		
 		Compte compte = compteService.chercherCompte(code);
 		if(compte != null) {
-			System.out.print("entre le montant : ");
+			System.out.print("entre le montant ^_^: ");
 			double montant = sc.nextDouble();
 			compte.verser(montant);
-            System.out.println("Versement effectué !");
+            System.out.println("^_^ Versement effectué ^_^");
         } else {
-            System.out.println("Compte introuvable !");
+            System.out.println(">>>>> ._. Compte introuvable ._. <<<<< ");
         }
 
 	}
 	
 	private void retrait() {
-		System.out.print("entre le code :");
+		System.out.print("entre le code ^_^:");
 		String code = sc.nextLine();
 		
 		Compte compte = compteService.chercherCompte(code);
 		if(compte != null) {
-			System.out.print("entre le montant :");
+			System.out.print("entre le montant ^_^:");
 			double montant = sc.nextDouble();
 			if(compte.retirer(montant)) {
-				System.out.println("Retreier effectué !");
+				System.out.println("^_^ Retreier effectué ^_^");
 			}else {
-				System.out.println("Retrait imposible !");
+				System.out.println("._. Retrait imposible ._.");
 			}
 		}else {
-			System.out.println("Compte introuvable !");
+			System.out.println(">>>>> ._. Compte introuvable ._. <<<<< ");
 		}
 	}
 	
 	private void virement() {
-		System.out.print("entre code source : ");
+		System.out.print("entre code source ^_^: ");
 		String codeS = sc.nextLine();
 		
-		System.out.print("entre code destination : ");
+		System.out.print("entre code destination ^_^: ");
 		String codeD = sc.nextLine();
 		
 		Compte compteS = compteService.chercherCompte(codeS);
 		Compte compteD = compteService.chercherCompte(codeD);
 		
 		if(compteS != null && compteD != null) {
-			System.out.print("entre le montant");
+			System.out.print("entre le montant ^_^:");
 			double montant = sc.nextDouble();
 			if(compteS.virement(compteD , montant)) {
-				System.out.println("virement reussi ");
+				System.out.println("^_^ virement reussi ^_^");
 			}else {
-				System.out.println("virement échoué  ");
+				System.out.println("._. virement échoué ._.");
 			}
 		}else {
-			System.out.println("Compte introuvable !");
+			System.out.println(">>>>> ._. Compte introuvable ._. <<<<< ");
 		}
 	}
 	
@@ -141,7 +145,7 @@ public class menu {
 		if(compte != null) {
 			compte.afficherDetails();
 		}else {
-			System.out.println("Compte introuvable");
+			System.out.println(">>>>> ._. Compte introuvable ._. <<<<< ");
 		}
 	}
 	
@@ -156,7 +160,7 @@ public class menu {
 				System.out.println(opiration);
 			}
 		}else {
-			System.out.println("Compte introuvable");
+			System.out.println(">>>>> ._. Compte introuvable ._. <<<<< ");
 		}
 	}
 	
@@ -168,7 +172,7 @@ public class menu {
 		if(compte != null) {
 			System.out.println("Solde du compte " + compte.getCode() + " : " + compte.getSolde());
         } else {
-            System.out.println("Compte introuvable !");
+            System.out.println(">>>>> ._. Compte introuvable ._. <<<<< ");
         }
 	}
 	
