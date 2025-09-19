@@ -15,9 +15,9 @@ public class CompteService {
         String code;
 
         do {
-            int nombre = rand.nextInt(90000) + 10000; // بين 10000 و 99999
+            int nombre = rand.nextInt(90000) + 10000; 
             code = "CPT-" + nombre;
-        } while (comptes.containsKey(code)); // نعاود توليد حتى يكون unique
+        } while (comptes.containsKey(code)); 
 
         return code;
     }
